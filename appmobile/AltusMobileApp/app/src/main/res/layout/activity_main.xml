@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/altus_mobile"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ===================== KIT 1 ===================== -->
+
+        <TextView
+            android:id="@+id/textKit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/altus_kit_1"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitle" />
+
+        <TextView
+            android:id="@+id/textOutputsKit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/saidas_digitais"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textKit1" />
+
+        <LinearLayout
+            android:id="@+id/layoutLedsKit1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textOutputsKit1">
+
+            <View
+                android:id="@+id/kit1Led1"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led2"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led3"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led4"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led5"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led6"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led7"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit1Led8"
+                style="@style/LedStyle" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textInputsKit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/entradas_digitais"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutLedsKit1" />
+
+
+        <LinearLayout
+            android:id="@+id/layoutButtonsKit1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputsKit1">
+
+            <Button
+                android:id="@+id/kit1Btn1"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_1"
+                android:contentDescription="@string/kit1_btn_1_desc" />
+
+            <Button
+                android:id="@+id/kit1Btn2"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_2"
+                android:contentDescription="@string/kit1_btn_2_desc" />
+
+            <Button
+                android:id="@+id/kit1Btn3"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_3"
+                android:contentDescription="@string/kit1_btn_3_desc" />
+
+            <Button
+                android:id="@+id/kit1Btn4"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_4"
+                android:contentDescription="@string/kit1_btn_4_desc" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layoutSwitchesKit1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutButtonsKit1">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit1Switch1"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_1" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit1Switch2"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_2" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit1Switch3"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_3" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit1Switch4"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_4" />
+
+        </LinearLayout>
+
+        <!-- ===================== KIT 2 ===================== -->
+
+        <TextView
+            android:id="@+id/textKit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/altus_kit_2"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSwitchesKit1" />
+
+        <TextView
+            android:id="@+id/textOutputsKit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/saidas_digitais"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textKit2" />
+
+        <LinearLayout
+            android:id="@+id/layoutLedsKit2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textOutputsKit2">
+
+            <View
+                android:id="@+id/kit2Led1"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led2"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led3"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led4"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led5"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led6"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led7"
+                style="@style/LedStyle" />
+
+            <View
+                android:id="@+id/kit2Led8"
+                style="@style/LedStyle" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textInputsKit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/entradas_digitais"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutLedsKit2" />
+
+        <LinearLayout
+            android:id="@+id/layoutButtonsKit2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputsKit2">
+
+            <Button
+                android:id="@+id/kit2Btn1"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_1"
+                android:contentDescription="@string/kit2_btn_1_desc" />
+
+            <Button
+                android:id="@+id/kit2Btn2"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_2"
+                android:contentDescription="@string/kit2_btn_2_desc" />
+
+            <Button
+                android:id="@+id/kit2Btn3"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_3"
+                android:contentDescription="@string/kit2_btn_3_desc" />
+
+            <Button
+                android:id="@+id/kit2Btn4"
+                style="@style/PushButtonStyle"
+                android:text="@string/btn_4"
+                android:contentDescription="@string/kit2_btn_4_desc" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutSwitchesKit2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutButtonsKit2">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit2Switch1"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_1" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit2Switch2"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_2" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit2Switch3"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_3" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/kit2Switch4"
+                style="@style/SwitchVisualStyle"
+                android:text="@string/switch_4" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

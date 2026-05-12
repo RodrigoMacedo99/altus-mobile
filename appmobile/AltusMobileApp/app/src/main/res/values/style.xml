@@ -1,0 +1,29 @@
+<resources>
+
+    <style name="LedStyle">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@drawable/led_off</item>
+    </style>
+
+    <style name="PushButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:backgroundTint">#D32F2F</item>
+    </style>
+
+    <style name="SwitchVisualStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
