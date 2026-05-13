@@ -17,13 +17,18 @@ class MqttHandler {
             .identifier("altus_mobile_${UUID.randomUUID()}") // ID único
             .serverHost(MqttConstants.BROKER_URL)
             .serverPort(MqttConstants.BROKER_PORT)
+            .sslWithDefaultConfig()
+            .automaticReconnectWithDefaultConfig()
             .buildAsync()
 
         client?.connect()?.whenComplete { _, throwable ->
             if (throwable != null) {
-                Log.e("MQTT", "Falha na conexão: ${throwable.message}")
+                Log.e("MQTT", "Connection failed: ${throwable.message}")
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    connect(onMessageReceived)
+                }, 5000)
             } else {
-                Log.d("MQTT", "Conectado ao Broker: ${MqttConstants.BROKER_URL}")
+                Log.d("MQTT", "Connected to Broker: ${MqttConstants.BROKER_URL}")
                 subscribeToAll(onMessageReceived)
             }
         }
@@ -33,29 +38,38 @@ class MqttHandler {
      * Se inscreve no tópico global usando o coringa '#'
      */
     private fun subscribeToAll(onMessageReceived: (String, String) -> Unit) {
-        client?.subscribeWith()!!
-            .topicFilter(MqttConstants.SUBSCRIBE_ALL_KITS) // "altus/#"
-            .callback { publish ->
+        client?.subscribeWith()
+            ?.topicFilter(MqttConstants.SUBSCRIBE_ALL_KITS) // "altus/#"
+            ?.callback { publish ->
                 val message = String(publish.payloadAsBytes)
                 val topic = publish.topic.toString()
 
-                Log.d("MQTT", "Recebido -> $topic: $message")
-                onMessageReceived(topic, message)
+                Log.d("MQTT", "Received -> $topic: $message")
+                android.os.Handler(android.os.Looper.getMainLooper()).post {
+                    onMessageReceived(topic, message)
+                }
             }
-            .send()
+            ?.send()
     }
 
     /**
      * Envia uma mensagem (Publica) em um tópico
      */
     fun publish(topic: String, message: String) {
-        client?.publishWith()!!
-            .topic(topic)
-            .payload(message.toByteArray())
-            .send()
-            .whenComplete { _, throwable ->
+        val isConnected = client?.state?.isConnected ?: false
+
+        if (!isConnected) {
+            Log.e("MQTT", "Can't publish on $topic: Client disconnected. Trying to reconnect...")
+            return
+        }
+
+        client?.publishWith()
+            ?.topic(topic)
+            ?.payload(message.toByteArray())
+            ?.send()
+            ?.whenComplete { _, throwable ->
                 if (throwable != null) {
-                    Log.e("MQTT", "Erro ao publicar em $topic: ${throwable.message}")
+                    Log.e("MQTT", "Error to publish on $topic: ${throwable.message}")
                 }
             }
     }

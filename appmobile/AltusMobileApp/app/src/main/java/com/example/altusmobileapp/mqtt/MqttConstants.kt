@@ -1,8 +1,8 @@
 package com.example.altusmobileapp.mqtt
 
 object MqttConstants {
-    const val BROKER_URL = "broker.hivemq.com"
-    const val BROKER_PORT = 1883
+    const val BROKER_URL = "mqtt-dashboard.com"
+    const val BROKER_PORT = 8883
 
     // Estrutura base
     private const val BASE = "altus"
