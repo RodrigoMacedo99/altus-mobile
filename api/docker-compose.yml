@@ -1,0 +1,18 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: altus-mosquitto
+    restart: unless-stopped
+    user: "0:0"
+
+    ports:
+      - "1883:1883"
+
+    volumes:
+      - ./broker:/mosquitto/config
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
