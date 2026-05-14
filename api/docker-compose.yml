@@ -3,15 +3,31 @@ services:
     image: eclipse-mosquitto:latest
     container_name: altus-mosquitto
     restart: unless-stopped
-    user: "0:0"
-
     ports:
       - "1883:1883"
-
     volumes:
-      - ./broker:/mosquitto/config
+      - ./broker/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./broker/passwords.txt:/mosquitto/config/passwords.txt:ro
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: altus-api
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    env_file:
+      - .env
+    environment:
+      MQTT_BROKER_HOST: mosquitto
+      MQTT_BROKER_PORT: 1883
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+    ports:
+      - "8000:8000"
 
 volumes:
   mosquitto_data:
