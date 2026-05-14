@@ -1,5 +1,19 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+// Função auxiliar para limpar as strings do local.properties
+fun getMqttProperty(key: String, default: String = ""): String {
+    val value = localProperties.getProperty(key) ?: default
+    return if (value == "null") "" else value
 }
 
 android {
@@ -18,6 +32,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Injetando as variáveis de forma segura
+        buildConfigField("String", "MQTT_USER", "\"${getMqttProperty("mqtt.user")}\"")
+        buildConfigField("String", "MQTT_PASSWORD", "\"${getMqttProperty("mqtt.password")}\"")
+        buildConfigField("String", "BROKER_URL", "\"${getMqttProperty("mqtt.url", "broker.hivemq.com")}\"")
+        buildConfigField("int", "BROKER_PORT", getMqttProperty("mqtt.port", "1883"))
+        buildConfigField("boolean", "USE_SSL", getMqttProperty("mqtt.use_ssl", "false"))
     }
 
     buildTypes {
@@ -29,6 +50,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

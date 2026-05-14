@@ -1,8 +1,13 @@
 package com.example.altusmobileapp.mqtt
 
+import com.example.altusmobileapp.BuildConfig
+
 object MqttConstants {
-    const val BROKER_URL = "mqtt-dashboard.com"
-    const val BROKER_PORT = 8883
+    val BROKER_URL = BuildConfig.BROKER_URL
+    val BROKER_PORT = BuildConfig.BROKER_PORT
+    val USE_SSL = BuildConfig.USE_SSL
+    val MQTT_USER = BuildConfig.MQTT_USER
+    val MQTT_PASSWORD = BuildConfig.MQTT_PASSWORD
 
     // Estrutura base
     private const val BASE = "altus"

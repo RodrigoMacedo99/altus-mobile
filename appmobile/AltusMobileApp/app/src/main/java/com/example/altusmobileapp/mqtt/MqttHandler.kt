@@ -8,16 +8,32 @@ import java.util.UUID
 class MqttHandler {
 
     private var client: Mqtt5AsyncClient? = null
+    private var messageCallback: ((String, String) -> Unit)? = null
 
     /**
      * Conecta ao broker e inicia a escuta global de todos os kits.
      */
     fun connect(onMessageReceived: (topic: String, message: String) -> Unit) {
-        client = Mqtt5Client.builder()
-            .identifier("altus_mobile_${UUID.randomUUID()}") // ID único
+        this.messageCallback = onMessageReceived
+        var builder = Mqtt5Client.builder()
+            .identifier("altus_mobile_${UUID.randomUUID()}")
             .serverHost(MqttConstants.BROKER_URL)
             .serverPort(MqttConstants.BROKER_PORT)
-            .sslWithDefaultConfig()
+
+        // Aplica SSL apenas se configurado
+        if (MqttConstants.USE_SSL) {
+            builder = builder.sslWithDefaultConfig()
+        }
+
+        // Aplica autenticação apenas se usuário e senha existirem
+        if (MqttConstants.MQTT_USER.isNotEmpty() && MqttConstants.MQTT_PASSWORD.isNotEmpty()) {
+            builder = builder.simpleAuth()
+                .username(MqttConstants.MQTT_USER)
+                .password(MqttConstants.MQTT_PASSWORD.toByteArray())
+                .applySimpleAuth()
+        }
+
+        client = builder
             .automaticReconnectWithDefaultConfig()
             .buildAsync()
 
@@ -56,10 +72,15 @@ class MqttHandler {
      * Envia uma mensagem (Publica) em um tópico
      */
     fun publish(topic: String, message: String) {
-        val isConnected = client?.state?.isConnected ?: false
+        val state = client?.state
+        val isConnected = state?.isConnected ?: false
 
         if (!isConnected) {
-            Log.e("MQTT", "Can't publish on $topic: Client disconnected. Trying to reconnect...")
+            Log.e("MQTT", "Can't publish on $topic: Client is ${state?.name ?: "NULL"}. Trying to reconnect...")
+            // Se estiver desconectado (não apenas conectando), tenta reconectar
+            if (state?.name == "DISCONNECTED" || state == null) {
+                messageCallback?.let { connect(it) }
+            }
             return
         }
 
