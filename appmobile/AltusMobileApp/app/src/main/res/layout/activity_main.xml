@@ -306,8 +306,10 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutButtonsKit2">
+            app:layout_constraintTop_toBottomOf="@id/layoutButtonsKit2"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/kit2Switch1"
@@ -330,6 +332,19 @@
                 android:text="@string/switch_4" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOpenLogs"
+            style="@style/LogButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/ver_logs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSwitchesKit2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

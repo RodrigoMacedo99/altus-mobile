@@ -26,5 +26,10 @@
     <string name="switch_2">S2</string>
     <string name="switch_3">S3</string>
     <string name="switch_4">S4</string>
+
+    <string name="ver_logs">Logs</string>
+    <string name="log_viewer_title">Logs</string>
+    <string name="limpar_logs">Limpar</string>
+    <string name="atualizar_logs">Atualizar</string>
 </resources>
 

@@ -1,6 +1,7 @@
 package com.example.altusmobileapp.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -46,12 +47,13 @@ class MainActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val basePadding = (16 * resources.displayMetrics.density).toInt()
 
             v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
+                systemBars.left + basePadding,
+                systemBars.top + basePadding,
+                systemBars.right + basePadding,
+                systemBars.bottom + basePadding
             )
 
             insets
@@ -82,6 +84,11 @@ class MainActivity : AppCompatActivity() {
         }
         kit2Switches.forEachIndexed { index, viewId ->
             setupSwitch(viewId, kit = 2, id = index + 1)
+        }
+
+        findViewById<Button>(R.id.btnOpenLogs)?.setOnClickListener {
+            val intent = Intent(this, LogViewerActivity::class.java)
+            startActivity(intent)
         }
     }
 

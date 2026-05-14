@@ -26,4 +26,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="LogButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/orange_altus</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="LogTextStyle">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

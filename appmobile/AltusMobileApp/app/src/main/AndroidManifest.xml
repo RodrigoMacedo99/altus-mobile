@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.LogViewerActivity"
+            android:exported="false"
+            android:label="@string/log_viewer_title" />
     </application>
 
 </manifest>
