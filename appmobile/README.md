@@ -30,7 +30,7 @@ O projeto utiliza o arquivo `local.properties` para gerenciar as credenciais do 
 mqtt.url=seu-broker.com
 mqtt.user=seu-usuario
 mqtt.password=sua-senha
-mqtt.port=8883
+mqtt.port=sua-porta
 mqtt.use_ssl=true
 ```
 
