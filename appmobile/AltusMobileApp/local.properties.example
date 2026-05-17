@@ -1,0 +1,8 @@
+## MQTT Configuration Example
+# Copy this file to local.properties and fill in your credentials
+
+mqtt.url=mqtt-dashboard.com
+mqtt.user=
+mqtt.password=
+mqtt.port=8883
+mqtt.use_ssl=true
