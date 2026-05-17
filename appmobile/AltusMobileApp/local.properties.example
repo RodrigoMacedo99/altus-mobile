@@ -1,8 +1,8 @@
 ## MQTT Configuration Example
 # Copy this file to local.properties and fill in your credentials
 
-mqtt.url=broker.hivemq.com
+mqtt.url=mqtt-dashboard.com
+mqtt.user=
+mqtt.password=
 mqtt.port=8883
-mqtt.user=your_username
-mqtt.password=your_password
 mqtt.use_ssl=true
