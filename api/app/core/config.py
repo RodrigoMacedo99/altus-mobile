@@ -22,6 +22,25 @@ class Settings:
     modbus_port: int = int(os.getenv("MODBUS_PORT", "502"))
     modbus_timeout: float = float(os.getenv("MODBUS_TIMEOUT", "3"))
 
+    # MODBUS RTU (serial, RS-485)
+    # If `modbus_serial_port` is set, the application will try to use Modbus RTU
+    # over the given serial port instead of Modbus TCP.
+    modbus_serial_port: str | None = os.getenv("MODBUS_SERIAL_PORT") or None
+    modbus_serial_baudrate: int = int(os.getenv("MODBUS_SERIAL_BAUDRATE", "19200"))
+    modbus_serial_parity: str = os.getenv("MODBUS_SERIAL_PARITY", "N")
+    modbus_serial_stopbits: int = int(os.getenv("MODBUS_SERIAL_STOPBITS", "1"))
+    modbus_serial_bytesize: int = int(os.getenv("MODBUS_SERIAL_BYTESIZE", "8"))
+    modbus_serial_method: str = os.getenv("MODBUS_SERIAL_METHOD", "rtu")
+
     # API
     api_host: str = os.getenv("API_HOST", "0.0.0.0")
     api_port: int = int(os.getenv("API_PORT", "8000"))
+
+
+
+## Defina as variáveis de ambiente para usar RS-485
+# $env:MODBUS_SERIAL_PORT="COM3"
+# $env:MODBUS_SERIAL_BAUDRATE="19200"
+# $env:MODBUS_SERIAL_PARITY="N"
+# $env:MODBUS_SERIAL_STOPBITS="1"
+# $env:MODBUS_SERIAL_BYTESIZE="8"
