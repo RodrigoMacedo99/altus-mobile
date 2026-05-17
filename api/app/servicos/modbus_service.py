@@ -2,6 +2,7 @@ import logging
 from threading import Lock
 
 from pymodbus.client import ModbusTcpClient
+from pymodbus.client import ModbusSerialClient
 
 from app.core.config import Settings
 from app.modelos.comando import CommandMapping
@@ -12,7 +13,7 @@ logger = logging.getLogger("altus.modbus")
 class ModbusService:
     def __init__(self, settings: Settings):
         self.settings = settings
-        self.client: ModbusTcpClient | None = None
+        self.client: ModbusTcpClient | ModbusSerialClient | None = None
         self.lock = Lock()
 
     def connect(self) -> bool:
@@ -24,11 +25,30 @@ class ModbusService:
         """
 
         if self.client is None:
-            self.client = ModbusTcpClient(
-                host=self.settings.modbus_host,
-                port=self.settings.modbus_port,
-                timeout=self.settings.modbus_timeout,
-            )
+            # Se porta serial configurada, usar Modbus RTU (serial/RS-485)
+            if self.settings.modbus_serial_port:
+                logger.info(
+                    "Usando Modbus RTU via serial %s | baud=%s",
+                    self.settings.modbus_serial_port,
+                    self.settings.modbus_serial_baudrate,
+                )
+
+                self.client = ModbusSerialClient(
+                    method=self.settings.modbus_serial_method,
+                    port=self.settings.modbus_serial_port,
+                    baudrate=self.settings.modbus_serial_baudrate,
+                    parity=self.settings.modbus_serial_parity,
+                    stopbits=self.settings.modbus_serial_stopbits,
+                    bytesize=self.settings.modbus_serial_bytesize,
+                    timeout=self.settings.modbus_timeout,
+                )
+
+            else:
+                self.client = ModbusTcpClient(
+                    host=self.settings.modbus_host,
+                    port=self.settings.modbus_port,
+                    timeout=self.settings.modbus_timeout,
+                )
 
         if self.client.connected:
             return True
