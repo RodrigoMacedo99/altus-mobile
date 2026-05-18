@@ -1,5 +1,0 @@
-fastapi
-uvicorn[standard]
-paho-mqtt
-pymodbus
-python-dotenv

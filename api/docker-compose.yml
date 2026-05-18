@@ -11,23 +11,13 @@ services:
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: altus-api
+  logger:
+    image: eclipse-mosquitto:latest
+    container_name: altus-logger
     restart: unless-stopped
     depends_on:
       - mosquitto
-    env_file:
-      - .env
-    environment:
-      MQTT_BROKER_HOST: mosquitto
-      MQTT_BROKER_PORT: 1883
-      API_HOST: 0.0.0.0
-      API_PORT: 8000
-    ports:
-      - "8000:8000"
+    command: mosquitto_sub -h mosquitto -u "gabriel" -P "altus123" -t '#' -v
 
 volumes:
   mosquitto_data:
