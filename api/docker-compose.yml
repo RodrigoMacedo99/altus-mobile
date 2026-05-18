@@ -1,0 +1,24 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: altus-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./broker/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./broker/passwords.txt:/mosquitto/config/passwords.txt:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+  logger:
+    image: eclipse-mosquitto:latest
+    container_name: altus-logger
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    command: mosquitto_sub -h mosquitto -u "gabriel" -P "altus123" -t '#' -v
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
