@@ -1,8 +1,24 @@
-## MQTT Configuration Example
-# Copy this file to local.properties and fill in your credentials
+## Configuração MQTT - Broker Mosquitto Local
+# Copie este arquivo para local.properties e preencha com os dados da sua rede.
+# ATENÇÃO: local.properties contém dados sensíveis e está no .gitignore.
 
-mqtt.url=mqtt-dashboard.com
+# IP do PC Windows onde o Mosquitto está instalado
+# (descubra com: ipconfig | busque "Endereço IPv4")
+mqtt.url=192.168.X.X
+
+# Sem usuário/senha quando allow_anonymous=true no mosquitto.conf
 mqtt.user=
 mqtt.password=
-mqtt.port=8883
-mqtt.use_ssl=true
+
+# Porta padrão MQTT sem SSL
+mqtt.port=1883
+
+# SSL desabilitado para rede local
+mqtt.use_ssl=false
+
+## Para usar broker remoto com SSL (ex.: HiveMQ Cloud):
+# mqtt.url=seu-broker.hivemq.cloud
+# mqtt.user=seu-usuario
+# mqtt.password=sua-senha
+# mqtt.port=8883
+# mqtt.use_ssl=true
