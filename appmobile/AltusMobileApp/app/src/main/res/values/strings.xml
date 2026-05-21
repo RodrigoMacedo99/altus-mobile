@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Altus Mobile</string>
+
+    <string name="altus_mobile">Altus Mobile</string>
+    <string name="altus_kit_1">Altus Kit 1</string>
+    <string name="altus_kit_2">Altus Kit 2</string>
+    <string name="saidas_digitais">Saídas Digitais</string>
+    <string name="entradas_digitais">Entradas Digitais</string>
+
+    <string name="btn_1">B1</string>
+    <string name="btn_2">B2</string>
+    <string name="btn_3">B3</string>
+    <string name="btn_4">B4</string>
+
+    <string name="kit1_btn_1_desc">Kit 1, botão 1</string>
+    <string name="kit1_btn_2_desc">Kit 1, botão 2</string>
+    <string name="kit1_btn_3_desc">Kit 1, botão 3</string>
+    <string name="kit1_btn_4_desc">Kit 1, botão 4</string>
+
+    <string name="kit2_btn_1_desc">Kit 2, botão 1</string>
+    <string name="kit2_btn_2_desc">Kit 2, botão 2</string>
+    <string name="kit2_btn_3_desc">Kit 2, botão 3</string>
+    <string name="kit2_btn_4_desc">Kit 2, botão 4</string>
+
+    <string name="switch_1">S1</string>
+    <string name="switch_2">S2</string>
+    <string name="switch_3">S3</string>
+    <string name="switch_4">S4</string>
+
+    <string name="ver_logs">Logs</string>
+    <string name="log_viewer_title">Logs</string>
+    <string name="limpar_logs">Limpar</string>
+    <string name="atualizar_logs">Atualizar</string>
+</resources>
+
