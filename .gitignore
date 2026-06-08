@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# IDEs e Editores
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Android / Gradle
+
+.gradle/
+build/
+local.properties
+.cxx/
+.externalNativeBuild/
+captures/
+
+# CODESYS / MasterTool (Arquivos de CLP)
+*.bak
+~$*.project
+*.compileinfo
+
+# Logs e Variáveis de Ambiente
+*.log
+.env
