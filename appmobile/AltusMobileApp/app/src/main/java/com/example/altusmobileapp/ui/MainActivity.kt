@@ -121,8 +121,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeGateway() {
         viewModel.onStatusUpdateReceived = { tag, status ->
-            // No futuro, o status deve ser processado do JSON recebido do seu Backend
-            // Por enquanto, o mapeamento continua buscando a tag para atualizar o LED
             val ledId = tagToLedMap[tag]
             ledId?.let { id ->
                 val isTargetOn = status == "1"
