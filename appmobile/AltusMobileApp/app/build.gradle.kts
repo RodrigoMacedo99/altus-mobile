@@ -34,11 +34,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Injetando as variáveis de forma segura
-        buildConfigField("String", "MQTT_USER", "\"${getMqttProperty("mqtt.user")}\"")
-        buildConfigField("String", "MQTT_PASSWORD", "\"${getMqttProperty("mqtt.password")}\"")
-        buildConfigField("String", "BROKER_URL", "\"${getMqttProperty("mqtt.url", "broker.hivemq.com")}\"")
-        buildConfigField("int", "BROKER_PORT", getMqttProperty("mqtt.port", "1883"))
-        buildConfigField("boolean", "USE_SSL", getMqttProperty("mqtt.use_ssl", "false"))
+        buildConfigField("String", "GATEWAY_URL", "\"${getMqttProperty("gateway.url", "ws://192.168.1.100:8080")}\"")
     }
 
     buildTypes {
@@ -77,5 +73,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    implementation(libs.hivemq.mqtt.client)
+    
+    // Ktor for WebSockets
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.websockets)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }

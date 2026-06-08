@@ -13,13 +13,12 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.altusmobileapp.R
-import com.example.altusmobileapp.mqtt.MqttConstants
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private val topicToLedMap = mapOf(
+    private val tagToLedMap = mapOf(
         "altus/kit1/pushbutton/1" to R.id.kit1Led1,
         "altus/kit1/pushbutton/2" to R.id.kit1Led2,
         "altus/kit1/pushbutton/3" to R.id.kit1Led3,
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupUI()
-        checkMqtt()
+        observeGateway()
     }
 
     private fun setupUI() {
@@ -120,11 +119,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkMqtt() {
-        viewModel.onStatusUpdateReceived = { topic, status ->
-            val ledId = topicToLedMap[topic]
+    private fun observeGateway() {
+        viewModel.onStatusUpdateReceived = { tag, status ->
+            // No futuro, o status deve ser processado do JSON recebido do seu Backend
+            // Por enquanto, o mapeamento continua buscando a tag para atualizar o LED
+            val ledId = tagToLedMap[tag]
             ledId?.let { id ->
-                val isTargetOn = status == MqttConstants.PAYLOAD_ON
+                val isTargetOn = status == "1"
                 val color = if (isTargetOn) R.drawable.led_on else R.drawable.led_off
 
                 findViewById<View>(id)?.setBackgroundResource(color)
