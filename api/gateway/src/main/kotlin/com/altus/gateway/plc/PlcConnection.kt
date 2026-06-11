@@ -25,7 +25,7 @@ class PlcConnection {
 
     private fun connect() {
         try {
-            val connectionString = "eip://$clpIp:44818?backplane=1&slot=$slot&force-unconnected-operation=true"
+            val connectionString = "eip://$clpIp:44818?backplane=1&slot=$slot&force-unconnected-operation=true&big-endian=false"
             logger.info("Connecting to PLC via: $connectionString")
             connection = PlcDriverManager.getDefault().connectionManager.getConnection(connectionString)
             logger.info("Connected to PLC successfully.")
