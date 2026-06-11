@@ -1,10 +1,14 @@
-FROM gradle:8.5-jdk17 AS build
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle buildFatJar --no-daemon
+FROM python:3.11-slim
 
-FROM eclipse-temurin:17-jre
+WORKDIR /app
+
+# Instalar dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código fonte
+COPY main.py .
+
 EXPOSE 8080
-RUN mkdir /app
-COPY --from=build /home/gradle/src/build/libs/*-all.jar /app/gateway.jar
-ENTRYPOINT ["java","-jar","/app/gateway.jar"]
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
