@@ -68,7 +68,18 @@ class PlcConnection:
 
     def write_tag(self, mobile_tag: str, value: str):
         if "kit2" in mobile_tag:
+            logger.warning(f"Ignorando escrita: tag {mobile_tag} pertence ao kit2.")
             return
+
+        # Mapeamento para permitir que botões e switches do celular controlem os LEDs diretamente.
+        if "pushbutton" in mobile_tag:
+            mobile_tag = mobile_tag.replace("pushbutton", "led")
+        elif "switch" in mobile_tag:
+            parts = mobile_tag.split("/")
+            if len(parts) == 4:
+                idx = int(parts[3])
+                # Switches 1-4 são mapeados para os LEDs 5-8
+                mobile_tag = f"{parts[0]}/{parts[1]}/led/{idx + 4}"
             
         if IS_MOCK:
             logger.info(f"[MOCK] Writing to {mobile_tag} value: {value}")
@@ -76,6 +87,7 @@ class PlcConnection:
             return
             
         if mobile_tag not in OUTPUT_BITS:
+            logger.warning(f"Ignorando escrita: tag {mobile_tag} não está configurada em OUTPUT_BITS.")
             return
             
         if self.plc is None:
@@ -199,6 +211,7 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             text = await websocket.receive_text()
+            logger.info(f"Mensagem recebida via WebSocket: {text}")
             try:
                 command = json.loads(text)
                 if command.get("action") == "write":
