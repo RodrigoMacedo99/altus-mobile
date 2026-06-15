@@ -9,6 +9,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("GatewaySockets")
+logging.getLogger("pycomm3").setLevel(logging.WARNING)
 
 app = FastAPI()
 

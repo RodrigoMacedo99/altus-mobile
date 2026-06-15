@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
         "altus/kit1/led/7" to R.id.kit1Led7,
         "altus/kit1/led/8" to R.id.kit1Led8,
 
-        "altus/kit2/led/1" to R.id.kit2Led1,
-        "altus/kit2/led/2" to R.id.kit2Led2,
-        "altus/kit2/led/3" to R.id.kit2Led3,
-        "altus/kit2/led/4" to R.id.kit2Led4,
-        "altus/kit2/led/5" to R.id.kit2Led5,
-        "altus/kit2/led/6" to R.id.kit2Led6,
-        "altus/kit2/led/7" to R.id.kit2Led7,
-        "altus/kit2/led/8" to R.id.kit2Led8,
+        "altus/kit2/pushbutton/1" to R.id.kit2Led1,
+        "altus/kit2/pushbutton/2" to R.id.kit2Led2,
+        "altus/kit2/pushbutton/3" to R.id.kit2Led3,
+        "altus/kit2/pushbutton/4" to R.id.kit2Led4,
+        "altus/kit2/switch/5" to R.id.kit2Led5,
+        "altus/kit2/switch/6" to R.id.kit2Led6,
+        "altus/kit2/switch/7" to R.id.kit2Led7,
+        "altus/kit2/switch/8" to R.id.kit2Led8,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

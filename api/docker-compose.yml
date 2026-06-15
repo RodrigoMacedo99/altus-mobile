@@ -6,8 +6,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - MOCK_PLC=true
-      - CLP_IP=192.168.0.100
+      - MOCK_PLC=false
+      - CLP_IP=192.168.15.1
       - CLP_SLOT=0
 
 # MANTIDO COMO LEGADO - NÃO UTILIZADO NO NOVO FLUXO ETHERNET/IP

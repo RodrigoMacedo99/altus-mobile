@@ -72,10 +72,15 @@ class GatewayHandler(private val scope: CoroutineScope) {
         
         scope.launch {
             try {
-                session?.send(Frame.Text(jsonCommand))
-                Log.d("Gateway", "Sent: $jsonCommand")
+                val currentSession = session
+                if (currentSession != null) {
+                    currentSession.send(Frame.Text(jsonCommand))
+                    Log.d("Gateway", "Successfully sent to server: $jsonCommand")
+                } else {
+                    Log.w("Gateway", "Failed to send command: No active WebSocket session. Message was: $jsonCommand")
+                }
             } catch (e: Exception) {
-                Log.e("Gateway", "Error sending command: ${e.message}")
+                Log.e("Gateway", "Error sending command: ${e.message}", e)
             }
         }
     }
