@@ -103,7 +103,7 @@ class PlcConnection:
             else:
                 self.current_output_byte &= ~(1 << bit_index)
             
-            dados_bytes = self.current_output_byte.to_bytes(2, byteorder='little')
+            dados_bytes = self.current_output_byte.to_bytes(1, byteorder='little')
             
             # Usamos self.plc diretamente, sem o bloco 'with'
             response = self.plc.generic_message(
